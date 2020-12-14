@@ -27,6 +27,9 @@ class Director extends React.Component {
               <li key={index}>
                 <h3>{director.name}</h3>
                 <p>Quote: "{director.summary}"</p>
+                <p>Birthday: {director.birthday}</p>
+                <p>API ID: {director.id}</p>
+                <button onClick={this.makeDeleteApiCall()}>DELETE ME</button>
               </li>
             ))}
           </ul>
@@ -52,6 +55,28 @@ class Director extends React.Component {
         });
       });
   };
+
+  // makeDeleteApiCall = () => {
+  //   fetch(`http://localhost:3000/directors/${this.id}`,{method: 'DELETE'})
+  //   .then((response) => response.json())
+  //   .then((jsonifiedResponse) => {
+  //     console.log(jsonifiedResponse)
+  //     if (jsonifiedResponse.code === 200){
+  //       const newresponse = {...jsonifiedResponse.filter(this.state.directors.id !== this.id)}
+  //     this.setState({
+  //       isLoaded: true,
+  //       directors: newresponse,
+  //     });
+  //     console.log('DELETED')
+  //   }
+  //   })
+  //   .catch((error) => {
+  //     this.setState({
+  //       isLoaded: true,
+  //       error,
+  //     });
+  //   });
+  // }
 
   componentDidMount() {
     // const { dispatch } = this.props;
