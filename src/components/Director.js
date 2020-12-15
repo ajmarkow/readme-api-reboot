@@ -1,4 +1,5 @@
 import React from "react";
+import SearchForm from "./SearchForm"
 /* import { connect } from 'react-redux';
 import { makeApiCall } from './actions'; */
 
@@ -8,12 +9,14 @@ class Director extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      directors: [],
+      movies: [],
+      searchparam: null
     };
   }
 
   render() {
-    const { error, isLoaded, directors } = this.state;
+    const { error, isLoaded, movies } = this.state;
+    // const formatter=new Intl.NumberFormat('en-US',{style:'currency', currency: 'USD',minimumFractionDigits: 2})
     if (error) {
       return <React.Fragment>Error: {error.message} </ React.Fragment>;
     } else if (!isLoaded) {
@@ -21,14 +24,12 @@ class Director extends React.Component {
     } else {
       return (
         <React.Fragment>
-          <h1>Director</h1>
+          <SearchForm onSearchSubmit={this.handleSettingSearchParam} />
           <ul>
-            {directors.map((director, index) => (
+            {movies.map((movie, index) => (
               <li key={index}>
-                <h3>{director.name}</h3>
-                <p>Quote: "{director.summary}"</p>
-                <p>Birthday: {director.birthday}</p>
-                <p>API ID: {director.id}</p>
+                <h3>Title: {movie.Title}</h3>
+                <img alt='selected movie poster' src={movie.Poster}></img>
                 <button onClick={this.makeDeleteApiCall()}>DELETE ME</button>
               </li>
             ))}
@@ -38,14 +39,15 @@ class Director extends React.Component {
     }
   }
 
-  makeApiCall = () => {
-    fetch('http://localhost:3000/directors')
+  makeOmdbApiCall = (parameter) => {
+    fetch(`https://www.omdbapi.com/?apikey=5e4cd2be&s=${parameter}`)
       .then((response) => response.json())
+      .then((jsonifiedResponse) => (jsonifiedResponse.Search))
       .then((jsonifiedResponse) => {
         console.log(jsonifiedResponse)
         this.setState({
           isLoaded: true,
-          directors: jsonifiedResponse,
+          movies: jsonifiedResponse,
         });
       })
       .catch((error) => {
@@ -56,8 +58,15 @@ class Director extends React.Component {
       });
   };
 
-  makeDeleteApiCall = () => {
+  handleSettingSearchParam = (param) => {
+    const clone = {...this.state}
+    const modifiedclone = clone => clone.searchparam = param
+    this.setState(modifiedclone)
+    console.log(this.state)
+  }
 
+  makeDeleteApiCall = () => {
+    // fetch('https://sheetdb.io/api/v1/58f61be4dda40/{'Budget'}/{'237000000'}')
   }
 
   // makeDeleteApiCall = () => {
@@ -85,11 +94,13 @@ class Director extends React.Component {
   componentDidMount() {
     // const { dispatch } = this.props;
     // dispatch(makeApiCall());
-    this.makeApiCall();
+    this.makeOmdbApiCall();
   }
 
   
 }
+
+
 
 // const mapStateToProps = (state) => {
 //   return {
