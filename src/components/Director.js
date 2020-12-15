@@ -56,6 +56,10 @@ class Director extends React.Component {
       });
   };
 
+  makeDeleteApiCall = () => {
+
+  }
+
   // makeDeleteApiCall = () => {
   //   fetch(`http://localhost:3000/directors/${this.id}`,{method: 'DELETE'})
   //   .then((response) => response.json())
