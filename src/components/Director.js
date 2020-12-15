@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import SearchForm from "./SearchForm"
 /* import { connect } from 'react-redux';
 import { makeApiCall } from './actions'; */
@@ -10,27 +10,35 @@ class Director extends React.Component {
       error: null,
       isLoaded: false,
       movies: [],
-      searchparam: null
+      searchparam: null,
+      isSubmitted:false
     };
   }
 
   render() {
-    const { error, isLoaded, movies } = this.state;
+    let { error, isLoaded, movies, searchparam } = this.state;
     // const formatter=new Intl.NumberFormat('en-US',{style:'currency', currency: 'USD',minimumFractionDigits: 2})
     if (error) {
       return <React.Fragment>Error: {error.message} </ React.Fragment>;
-    } else if (!isLoaded) {
-      return <React.Fragment>Loading...</React.Fragment>;
+    } else if (searchparam == null && this.state.isSubmitted === false) {
+      console.log("else if")
+      if (searchparam !=null ){
+      return(
+        <SearchForm />
+      )
+      }
     } else {
+      console.error('RENDERING RETURN')
+      console.log(searchparam)
+      console.log(this.state)
       return (
         <React.Fragment>
-          <SearchForm onSearchSubmit={this.handleSettingSearchParam} />
+          <SearchForm onSubmit={this.handleSettingSearchParam} />
           <ul>
             {movies.map((movie, index) => (
               <li key={index}>
                 <h3>Title: {movie.Title}</h3>
                 <img alt='selected movie poster' src={movie.Poster}></img>
-                <button onClick={this.makeDeleteApiCall()}>DELETE ME</button>
               </li>
             ))}
           </ul>
@@ -48,6 +56,7 @@ class Director extends React.Component {
         this.setState({
           isLoaded: true,
           movies: jsonifiedResponse,
+          isSubmitted: true
         });
       })
       .catch((error) => {
@@ -59,10 +68,24 @@ class Director extends React.Component {
   };
 
   handleSettingSearchParam = (param) => {
-    const clone = {...this.state}
-    const modifiedclone = clone => clone.searchparam = param
-    this.setState(modifiedclone)
-    console.log(this.state)
+    console.log('handler' + param)
+    fetch(`https://www.omdbapi.com/?apikey=5e4cd2be&s=${param}`)
+    .then((response) => response.json())
+    .then((jsonifiedResponse) => (jsonifiedResponse.Search))
+    .then((jsonifiedResponse) => {
+      console.log(jsonifiedResponse)
+      this.setState({
+        isLoaded: true,
+        movies: jsonifiedResponse,
+        isSubmitted: true
+      });
+    })
+    .catch((error) => {
+      this.setState({
+        isLoaded: true,
+        error,
+      });
+    });
   }
 
   makeDeleteApiCall = () => {
@@ -94,7 +117,11 @@ class Director extends React.Component {
   componentDidMount() {
     // const { dispatch } = this.props;
     // dispatch(makeApiCall());
-    this.makeOmdbApiCall();
+      console.log(this.state.searchparam)
+    if (searchparam != nuseCallback)
+    this.makeOmdbApiCall(this.state.searchparam)
+  
+
   }
 
   
