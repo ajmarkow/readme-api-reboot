@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
-
-body {
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+body,.jumbotron,.jumbotron.fluid {
   margin: 0;
-  font-family: 'Bree Serif', serif;
+  font-family: 'Rubik', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color:white;
   background-color:black;
+  margin-left:10%;
+  margin-right:10%;
 }
 
 code {
@@ -14,21 +15,19 @@ code {
     monospace;
 }
 
-
-.example-enter {
-  opacity: 0.01;
+button{
+  margin-top:2%;
 }
 
-.example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
+.headingpadding{
+  padding-top:5%;
+
+
 }
 
-.example-leave {
-  opacity: 1;
+.bottompad{
+  padding-top:5%;
 }
-
-.example-leave.example-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
+ul{
+  margin-left:-5%;
 }

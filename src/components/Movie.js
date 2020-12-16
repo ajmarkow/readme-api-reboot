@@ -23,12 +23,14 @@ class Movie extends React.Component {
     // const formatter=new Intl.NumberFormat('en-US',{style:'currency', currency: 'USD',minimumFractionDigits: 2})
     if (error) {
       return <React.Fragment>Error: {error.message} </ React.Fragment>;
-    // } else if (searchparam == null && this.state.isSubmitted === false) {
-    //   console.log("else if")
-    //   return(
-    //     <SearchForm  />
-      
-    //   )
+    } else if (movies == undefined) {
+      console.log("else if")
+      return(
+        <React.Fragment>
+        <h4>No Movies Found</h4>
+        <button className='btn btn-primary' onClick={this.resetMe}>Back to the search</button>
+        </React.Fragment>
+      )
     } 
     else {
       console.error('RENDERING RETURN')
@@ -44,11 +46,11 @@ class Movie extends React.Component {
         transitionEnterTimeout={10000}
         transitionLeaveTimeout={300}>
           
-          <ul>
-            {movies.map((movie, index) => (
-              <li key={index}>
+          <ul className='headingpadding'>
+            {movies != undefined && movies.map((movie, index) => (
+              <li className='bottompad' key={index}>
                 <h3>Title: {movie.Title}</h3>
-                {movie.Poster == "N/A" &&
+                {movie.Poster == "N/A" && 
         <h5>
           No Poster Returned
         </h5>
@@ -107,6 +109,17 @@ class Movie extends React.Component {
 
   makeDeleteApiCall = () => {
     // fetch('https://sheetdb.io/api/v1/58f61be4dda40/{'Budget'}/{'237000000'}')
+  }
+
+   resetMe = (state) => {
+    this.setState({
+      // prevState
+      error: null,
+      isLoaded: false,
+      movies: [],
+      searchparam: null,
+      isSubmitted:false
+    })
   }
 
   // makeDeleteApiCall = () => {
