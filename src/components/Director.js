@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import SearchForm from "./SearchForm"
-/* import { connect } from 'react-redux';
-import { makeApiCall } from './actions'; */
+// import { connect } from 'react-redux';
+// import { makeApiCall } from './actions';
 
 class Director extends React.Component {
   constructor(props) {
@@ -22,11 +22,10 @@ class Director extends React.Component {
       return <React.Fragment>Error: {error.message} </ React.Fragment>;
     } else if (searchparam == null && this.state.isSubmitted === false) {
       console.log("else if")
-      if (searchparam !=null ){
       return(
-        <SearchForm />
+        <SearchForm onSubmit={this.handleSettingSearchParam} />
+      
       )
-      }
     } else {
       console.error('RENDERING RETURN')
       console.log(searchparam)
@@ -118,9 +117,9 @@ class Director extends React.Component {
     // const { dispatch } = this.props;
     // dispatch(makeApiCall());
       console.log(this.state.searchparam)
-    if (searchparam != nuseCallback)
+    // if ( this.state.searchparam != useCallback()) {
     this.makeOmdbApiCall(this.state.searchparam)
-  
+    // }
 
   }
 
