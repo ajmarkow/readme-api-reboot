@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from "react";
+import React from "react";
 import SearchForm from "./SearchForm"
 // import { connect } from 'react-redux';
 // import { makeApiCall } from './actions';
@@ -19,11 +19,11 @@ class Movie extends React.Component {
   }
 
   render() {
-    let { error, isLoaded, movies, searchparam } = this.state;
+    let { error, movies, searchparam } = this.state;
     // const formatter=new Intl.NumberFormat('en-US',{style:'currency', currency: 'USD',minimumFractionDigits: 2})
     if (error) {
       return <React.Fragment>Error: {error.message} </ React.Fragment>;
-    } else if (movies == undefined) {
+    } else if (movies === undefined) {
       console.log("else if")
       return(
         <React.Fragment>
@@ -47,15 +47,15 @@ class Movie extends React.Component {
         transitionLeaveTimeout={300}>
           
           <ul className='headingpadding'>
-            {movies != undefined && movies.map((movie, index) => (
+            {movies !== undefined && movies.map((movie, index) => (
               <li className='bottompad' key={index}>
                 <h3>Title: {movie.Title}</h3>
-                {movie.Poster == "N/A" && 
+                {movie.Poster === "N/A" && 
         <h5>
           No Poster Returned
         </h5>
     }
-                {movie.Poster != "N/A" && <img alt='selected movie poster' src={movie.Poster}></img>
+                {movie.Poster !== "N/A" && <img alt='selected movie poster' src={movie.Poster}></img>
                }
               </li>
             ))}
