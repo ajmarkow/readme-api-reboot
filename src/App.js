@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Director from './components/Director';
+import Movie from './components/Movie';
 
 function App() {
   return (
     <React.Fragment>
-      <Director />
+      <Movie />
     </React.Fragment>
   );
 }

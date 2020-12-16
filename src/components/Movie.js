@@ -2,8 +2,11 @@ import React, {useState, useEffect, useCallback} from "react";
 import SearchForm from "./SearchForm"
 // import { connect } from 'react-redux';
 // import { makeApiCall } from './actions';
+// import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import { CSSTransitionGroup } from 'react-transition-group'
 
-class Director extends React.Component {
+
+class Movie extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,6 +39,11 @@ class Director extends React.Component {
       return (
         <React.Fragment>
           <SearchForm onSubmit={this.handleSettingSearchParam} />
+          <CSSTransitionGroup
+          transitionName="example"
+        transitionEnterTimeout={10000}
+        transitionLeaveTimeout={300}>
+          
           <ul>
             {movies.map((movie, index) => (
               <li key={index}>
@@ -50,6 +58,7 @@ class Director extends React.Component {
               </li>
             ))}
           </ul>
+        </ CSSTransitionGroup>
         </React.Fragment>
       );
     }
@@ -139,11 +148,11 @@ class Director extends React.Component {
 
 // const mapStateToProps = (state) => {
 //   return {
-//     Director: state.Director,
+//     Movie: state.Movie,
 //     isLoaded: state.isLoaded,
 //     error: state.error,
 //   };
 // };
 
-// export default connect(mapStateToProps)(Director);
-export default Director;
+// export default connect(mapStateToProps)(Movie);
+export default Movie;
