@@ -20,16 +20,19 @@ class Director extends React.Component {
     // const formatter=new Intl.NumberFormat('en-US',{style:'currency', currency: 'USD',minimumFractionDigits: 2})
     if (error) {
       return <React.Fragment>Error: {error.message} </ React.Fragment>;
-    } else if (searchparam == null && this.state.isSubmitted === false) {
-      console.log("else if")
-      return(
-        <SearchForm onSubmit={this.handleSettingSearchParam} />
+    // } else if (searchparam == null && this.state.isSubmitted === false) {
+    //   console.log("else if")
+    //   return(
+    //     <SearchForm  />
       
-      )
-    } else {
+    //   )
+    } 
+    else {
       console.error('RENDERING RETURN')
       console.log(searchparam)
       console.log(this.state)
+      /* API Returns N/A if No Poster. */
+
       return (
         <React.Fragment>
           <SearchForm onSubmit={this.handleSettingSearchParam} />
@@ -37,7 +40,13 @@ class Director extends React.Component {
             {movies.map((movie, index) => (
               <li key={index}>
                 <h3>Title: {movie.Title}</h3>
-                <img alt='selected movie poster' src={movie.Poster}></img>
+                {movie.Poster == "N/A" &&
+        <h5>
+          No Poster Returned
+        </h5>
+    }
+                {movie.Poster != "N/A" && <img alt='selected movie poster' src={movie.Poster}></img>
+               }
               </li>
             ))}
           </ul>
@@ -113,15 +122,15 @@ class Director extends React.Component {
   //   });
   // }
 
-  componentDidMount() {
-    // const { dispatch } = this.props;
-    // dispatch(makeApiCall());
-      console.log(this.state.searchparam)
-    // if ( this.state.searchparam != useCallback()) {
-    this.makeOmdbApiCall(this.state.searchparam)
-    // }
+  // componentDidMount() {
+  //   // const { dispatch } = this.props;
+  //   // dispatch(makeApiCall());
+  //     console.log(this.state.searchparam)
+  //   // if ( this.state.searchparam != useCallback()) {
+  //   this.makeOmdbApiCall(this.state.searchparam)
+  //   // }
 
-  }
+  // }
 
   
 }
