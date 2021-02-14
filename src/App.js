@@ -10,7 +10,7 @@ function App() {
       <div className='row'>
           <div ClassName='col-12'>
           <Jumbotron>
-              <h2 className='text-nowrap'>Movie Poster Search</h2> 
+              <h2 className='text-nowrap'>Github Readme Check</h2> 
             </Jumbotron>
             <br/>
       </div>

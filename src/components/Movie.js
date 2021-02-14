@@ -1,9 +1,12 @@
 import React from "react";
 import SearchForm from "./SearchForm"
+import _ from "lodash"
 // import { connect } from 'react-redux';
 // import { makeApiCall } from './actions';
 // import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import { CSSTransitionGroup } from 'react-transition-group'
+import {Icon,Label,Menu,Table} from 'semantic-ui-react'
+const headers = { 'x-api-key': process.env.README_API_KEY };
 
 
 class Movie extends React.Component {
@@ -12,22 +15,22 @@ class Movie extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      movies: [],
+      repositories: [],
+      scores: [],
       searchparam: null,
       isSubmitted:false
     };
   }
 
   render() {
-    let { error, movies, searchparam } = this.state;
-    // const formatter=new Intl.NumberFormat('en-US',{style:'currency', currency: 'USD',minimumFractionDigits: 2})
+    let { error, repositories, searchparam } = this.state;
     if (error) {
       return <React.Fragment>Error: {error.message} </ React.Fragment>;
-    } else if (movies === undefined) {
+    } else if (repositories === undefined) {
       console.log("else if")
       return(
         <React.Fragment>
-        <h4>No Movies Found</h4>
+        <h4>No rawData Found</h4>
         <button className='btn btn-primary' onClick={this.resetMe}>Back to the search</button>
         </React.Fragment>
       )
@@ -47,19 +50,8 @@ class Movie extends React.Component {
         transitionLeaveTimeout={300}>
           
           <ul className='headingpadding'>
-            {movies !== undefined && movies.map((movie, index) => (
-              <li className='bottompad' key={index}>
-                <h3>Title: {movie.Title}</h3>
-                {movie.Poster === "N/A" && 
-        <h5>
-          No Poster Returned
-        </h5>
-    }
-                {movie.Poster !== "N/A" && <img alt='selected movie poster' src={movie.Poster}></img>
-               }
-              </li>
-            ))}
-          </ul>
+              {repositories !== null && repositories.map(item => <p>{item}</p>)}
+            </ul>
         </ CSSTransitionGroup>
         </React.Fragment>
       );
@@ -67,35 +59,39 @@ class Movie extends React.Component {
   }
 
   makeOmdbApiCall = (parameter) => {
-    fetch(`https://www.omdbapi.com/?apikey=5e4cd2be&s=${parameter}`)
-      .then((response) => response.json())
-      .then((jsonifiedResponse) => (jsonifiedResponse.Search))
-      .then((jsonifiedResponse) => {
-        console.log(jsonifiedResponse)
-        this.setState({
-          isLoaded: true,
-          movies: jsonifiedResponse,
-          isSubmitted: true
-        });
-      })
-      .catch((error) => {
-        this.setState({
-          isLoaded: true,
-          error,
-        });
-      });
+fetch(
+  "https://2scou7syj7.execute-api.us-west-2.amazonaws.com/prod/grades?username=" +
+    this.state.param,
+  headers
+).then((response) => response.json())
+  .then((jsonifiedResponse) => jsonifiedResponse.Search)
+  .then((jsonifiedResponse) => {
+    console.log(jsonifiedResponse);
+    this.setState({
+      isLoaded: true,
+      repositories: jsonifiedResponse.githubRepositories,
+      scores: jsonifiedResponse.githubScores,
+      isSubmitted: true,
+    });
+  })
+  .catch((error) => {
+    this.setState({
+      isLoaded: true,
+      error,
+    });
+  });
   };
 
   handleSettingSearchParam = (param) => {
-    console.log('handler' + param)
-    fetch(`https://www.omdbapi.com/?apikey=5e4cd2be&s=${param}`)
+    fetch(`https://2scou7syj7.execute-api.us-west-2.amazonaws.com/prod/grades?username=${param}`)
     .then((response) => response.json())
-    .then((jsonifiedResponse) => (jsonifiedResponse.Search))
     .then((jsonifiedResponse) => {
       console.log(jsonifiedResponse)
       this.setState({
         isLoaded: true,
-        movies: jsonifiedResponse,
+        searchparam: param,
+        repositories: jsonifiedResponse.githubRepositories,
+        scores: jsonifiedResponse.githubScores,
         isSubmitted: true
       });
     })
@@ -116,7 +112,7 @@ class Movie extends React.Component {
       // prevState
       error: null,
       isLoaded: false,
-      movies: [],
+      movies: {},
       searchparam: null,
       isSubmitted:false
     })
