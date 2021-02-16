@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+<div align="center">
+<h1 align="center">Github README Check</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Status](https://img.shields.io/badge/status-active-success.svg)]()
+[![GitHub Issues](https://img.shields.io/github/issues/ajmarkow/readme-api-reboot.svg)](https://github.com/ajmarkow/readme-api-reboot/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/ajmarkow/readme-api-reboot.svg)](https://github.com/ajmarkow/readme-api-reboot/pulls)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
-## Available Scripts
+</div>
 
-In the project directory, you can run:
+---
 
-### `yarn start`
+<p align="center"> Check all your repositories for a README.md in seconds.
+    <br> 
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 📝 Table of Contents
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [About](#about)
+- [Getting Started](#getting_started)
+- [Deployment](#deployment)
+- [Usage](#usage)
+- [Built Using](#built_using)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgement)
 
-### `yarn test`
+## 🧐 About <a name = "about"></a>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Ever wanted to see if you had any public Github repositories without a README, so you could make sure they're all your public code is well-documented? Now you can! This is the front end for an API that takes your github username and returns a list of your public repositories, as well as if a README exists for that repository.
 
-### `yarn build`
+## 🏁 Getting Started <a name = "getting_started"></a>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Git clone the project to your system and set up an instance of the API that backs this front-end
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You'll need to have the API that pairs with this front end deployed on AWS.  Repository for that API at [this repository](https://www.github.com/ajmarkow/readme-stats-api).
+### Installing
 
-### `yarn eject`
+- Run this command to set up, or deploy to your favorite hosting provider like AWS Amplify or Vercel.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+npm install
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🎈 Usage <a name="usage"></a>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Enter github username into the form on the main page.
+- Hit check and a list of repositories for a given Github user, as well as whether or not they have READMEs is generated.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 🚀 Deployment <a name = "deployment"></a>
 
-## Learn More
+Deploying requires defining a few secrets in .env or the environmental variables of your hosting provider.  You must define the following values
+```
+REACT_APP_README_API_KEY = API Key for your AWS API Gateway README API
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## ⛏️ Built Using <a name = "built_using"></a>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [Serverless Framework](https://www.serverless.com/) - Back End
+- [React](https://reactjs.org/) - Front End
+- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [Create React App](https://github.com/facebook/create-react-app)
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## ✍️ Authors <a name = "authors"></a>
 
-### Analyzing the Bundle Size
+- [@ajmarkow](https://github.com/ajmarkow) - Idea & Initial work
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Octokit was such a pleasure to work with and indispensable to build this project.
+- Serverless Stack really helped me learn building the API for this application using the serverless framework.
