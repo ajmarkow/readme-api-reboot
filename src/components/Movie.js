@@ -57,7 +57,12 @@ class Movie extends React.Component {
                     <tr>
                       <th scope="row">{parseInt(index) + 1}</th>
                       <td>
-                        <a href={"https://github.com/".concat(item)}>{item}</a>
+                        <a
+                          target="_blank"
+                          href={"https://github.com/".concat(item)}
+                        >
+                          {item}
+                        </a>
                       </td>
                     </tr>
                   ))}

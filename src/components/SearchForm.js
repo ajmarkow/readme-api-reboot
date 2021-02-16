@@ -18,9 +18,9 @@ function SearchForm(props){
           ></input>
           <br></br>
           <motion.button
-            className="btn btn-secondary"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            className="btn btn-light"
+            whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 1.25 }}
             type="submit"
           >
             Check
