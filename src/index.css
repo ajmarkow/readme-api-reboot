@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 body,.jumbotron,.jumbotron.fluid {
   margin: 0;
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color:white;
@@ -40,4 +40,18 @@ tr{
 
 table{
   margin-top:4vh;
+}
+
+a {
+  color:tomato;
+}
+
+a:hover{
+  color:white;
+}
+
+.form-control-plaintext{
+  background-color:white;
+  color:black;
+  margin-left: 25%vh
 }

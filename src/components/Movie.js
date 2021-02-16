@@ -1,11 +1,6 @@
 import React from "react";
 import SearchForm from "./SearchForm"
-import _ from "lodash"
-// import { connect } from 'react-redux';
-// import { makeApiCall } from './actions';
-// import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import { CSSTransitionGroup } from 'react-transition-group'
-import {Icon,Label,Menu,Table} from 'semantic-ui-react'
 const headers = { 'x-api-key': process.env.README_API_KEY };
 
 
@@ -53,7 +48,7 @@ class Movie extends React.Component {
                 <tr>
                   <th scope="col">Count</th>
                   <th scope="col">Repository</th>
-                  <th scope="col">Readme.md Present?</th>
+                  <th scope="col">Readme?</th>
                 </tr>
               </thead>
               <tbody>

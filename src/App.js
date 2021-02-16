@@ -1,17 +1,18 @@
 import React from 'react';
 import './App.css';
 import Movie from './components/Movie';
-import {Jumbotron,Container} from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 
 function App() {
   return (
     <React.Fragment>
-     <Container className='justify-content-center'>
-      <div className='row'>
-          <div ClassName='col-12 py-5'>
-            <span className='text-nowrap'>
-            <img src='/GitHub-Mark-Light-120px-plus.png' />
-              <h2 className='text-nowrap'>Github Readme Check</h2> 
+     <Container className='align-items-left'>
+      <div className='row py-4 px-3'>
+          <div ClassName='col-12 align-items-left'>
+            <span>
+              <h2 className='text-nowrap'>Github Readme Check</h2>
+              <p>Check if any of your public Github Repositories don't have a README.</p>
+
             </span>
       </div>
       </div>
