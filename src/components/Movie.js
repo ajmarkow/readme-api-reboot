@@ -56,13 +56,25 @@ class Movie extends React.Component {
                   <th scope="col">Readme.md Present?</th>
                 </tr>
               </thead>
-              {repositories &&
-                repositories.map((item, index) => (
-                  <tr>
-                    <th scope="row">{parseInt(index) + 1}</th>
-                    <td>{item}</td>
-                  </tr>
-                ))}
+              <tbody>
+                {repositories &&
+                  repositories.map((item, index) => (
+                    <tr>
+                      <th scope="row">{parseInt(index) + 1}</th>
+                      <td>
+                        <a href={"https://github.com/".concat(item)}>{item}</a>
+                      </td>
+                    </tr>
+                  ))}
+                {scores &&
+                  scores.map((item) => (
+                    <td>
+                      {item.files.readme.url != null
+                        ? item.files.readme.url
+                        : "No README"}
+                    </td>
+                  ))}
+              </tbody>
             </table>
           </CSSTransitionGroup>
         </React.Fragment>
@@ -95,6 +107,27 @@ fetch(
   };
 
   handleSettingSearchParam = (param) => {
+    const baditem = {
+      "message": "Not Found",
+      "documentation_url": "https://docs.github.com/rest/reference/repos#get-community-profile-metrics"
+    };
+    const goodresponse = {
+      "health_percentage": 0,
+      "description": null,
+      "documentation": null,
+      "files": {
+        "code_of_conduct": null,
+        "contributing": null,
+        "issue_template": null,
+        "pull_request_template": null,
+        "license": null,
+        "readme": {
+          "url": null,
+          "html_url": null
+        }
+      }
+    };
+
     fetch(`https://2scou7syj7.execute-api.us-west-2.amazonaws.com/prod/grades?username=${param}`)
     .then((response) => response.json())
     .then((jsonifiedResponse) => {
@@ -103,7 +136,7 @@ fetch(
         isLoaded: true,
         searchparam: param,
         repositories: jsonifiedResponse.githubRepositories,
-        scores: jsonifiedResponse.githubScores,
+        scores: jsonifiedResponse.githubScores.forEach(function(item, i) { if (item === baditem) jsonifiedResponse.githubScores[i] = goodresponse}),
         isSubmitted: true
       });
     })
