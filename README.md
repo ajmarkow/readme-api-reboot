@@ -10,7 +10,7 @@
 
 ---
 
-<p align="center"> Check all your repositories for a README.md in seconds.
+<p align="center"> Check all your public GitHub repositories for a README.md in seconds. Try it out at <a href='https://readme.ajm.codes'>https://readme.ajm.codes</a>.
     <br> 
 </p>
 
