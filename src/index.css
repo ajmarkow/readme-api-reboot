@@ -50,8 +50,9 @@ a:hover{
   color:white;
 }
 
+
 .form-control-plaintext{
   background-color:white;
   color:black;
-  margin-left: 25%vh
+  width: 35vw;
 }
