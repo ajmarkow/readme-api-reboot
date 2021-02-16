@@ -23,7 +23,7 @@ class Movie extends React.Component {
   }
 
   render() {
-    let { error, repositories, searchparam } = this.state;
+    let { error, repositories,scores, searchparam } = this.state;
     if (error) {
       return <React.Fragment>Error: {error.message} </ React.Fragment>;
     } else if (repositories === undefined) {
@@ -40,19 +40,31 @@ class Movie extends React.Component {
       console.log(searchparam)
       console.log(this.state)
       /* API Returns N/A if No Poster. */
-
       return (
         <React.Fragment>
           <SearchForm onSubmit={this.handleSettingSearchParam} />
           <CSSTransitionGroup
-          transitionName="example"
-        transitionEnterTimeout={10000}
-        transitionLeaveTimeout={300}>
-          
-          <ul className='headingpadding'>
-              {repositories !== null && repositories.map(item => <p>{item}</p>)}
-            </ul>
-        </ CSSTransitionGroup>
+            transitionName="example"
+            transitionEnterTimeout={10000}
+            transitionLeaveTimeout={300}
+          >
+            <table class="table table-striped table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">Count</th>
+                  <th scope="col">Repository</th>
+                  <th scope="col">Readme.md Present?</th>
+                </tr>
+              </thead>
+              {repositories &&
+                repositories.map((item, index) => (
+                  <tr>
+                    <th scope="row">{parseInt(index) + 1}</th>
+                    <td>{item}</td>
+                  </tr>
+                ))}
+            </table>
+          </CSSTransitionGroup>
         </React.Fragment>
       );
     }

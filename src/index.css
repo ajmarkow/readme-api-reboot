@@ -31,3 +31,13 @@ button{
 ul{
   margin-left:-5%;
 }
+
+tr{
+  color:white;
+  margin-top: 1vh;
+  margin-bottom: 1.5vh;
+}
+
+table{
+  margin-top:4vh;
+}

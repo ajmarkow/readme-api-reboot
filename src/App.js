@@ -8,15 +8,15 @@ function App() {
     <React.Fragment>
      <Container className='justify-content-center'>
       <div className='row'>
-          <div ClassName='col-12'>
-          <Jumbotron>
+          <div ClassName='col-12 py-5'>
+            <span className='text-nowrap'>
+            <img src='/GitHub-Mark-Light-120px-plus.png' />
               <h2 className='text-nowrap'>Github Readme Check</h2> 
-            </Jumbotron>
-            <br/>
+            </span>
       </div>
       </div>
       <div className='row'>
-        <div className='col-12 headingpadding'>
+        <div className='col-10 headingpadding'>
       <Movie />
       </div>
       </div>
