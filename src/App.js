@@ -1,8 +1,8 @@
-import React from 'react';
-import './App.css';
-import Movie from './components/Movie';
-import { Container } from 'react-bootstrap';
-import GithubCorner from 'react-github-corner';
+import React from "react";
+import "./App.css";
+import Report from "./components/Report";
+import { Container } from "react-bootstrap";
+import GithubCorner from "react-github-corner";
 
 function App() {
   return (
@@ -16,7 +16,9 @@ function App() {
         <div className="row py-4 px-3">
           <div ClassName="col-12 align-items-left">
             <span>
-              <h2 name='top' className="text-nowrap">Github Readme Check</h2>
+              <h2 name="top" className="text-nowrap">
+                Github README Check
+              </h2>
               <p>
                 Check if any of your public Github Repositories don't have a
                 README.
@@ -26,7 +28,7 @@ function App() {
         </div>
         <div className="row">
           <div className="col-10 headingpadding">
-            <Movie />
+            <Report />
           </div>
         </div>
       </Container>

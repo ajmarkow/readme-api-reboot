@@ -54,5 +54,9 @@ a:hover{
 .form-control-plaintext{
   background-color:white;
   color:black;
-  width: 35vw;
+  width: 20vw;
+}
+
+.formdisplay{
+  display:block;
 }
