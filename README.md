@@ -64,10 +64,11 @@ REACT_APP_README_API_KEY = API Key for your AWS API Gateway README API
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@ajmarkow](https://github.com/ajmarkow) - Idea & Initial work
+- [@ajmarkow](https://github.com/ajmarkow) - Front End Adaptation
 
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
-- Octokit was such a pleasure to work with and indispensable to build this project.
+-  Front end adapted from project originally built with Alex Goodwin.
+-  Octokit was such a pleasure to work with and indispensable to build this project.
 - Serverless Stack really helped me learn building the API for this application using the serverless framework.
