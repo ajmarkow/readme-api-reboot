@@ -10,7 +10,7 @@ function App() {
       <Container className="align-items-left">
         <GithubCorner
           bannerColor="#3dcfc2"
-          href="https://github.com/ajmarkow/portfolio"
+          href="https://github.com/ajmarkow/readme-api-reboot"
           alt="The README for README Check"
         />
         <div className="row py-4 px-3">
